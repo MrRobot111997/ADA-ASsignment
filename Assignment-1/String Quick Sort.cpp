@@ -1,16 +1,23 @@
 #include<iostream>
-#include<string.h>
+#include<string>
 using namespace std;
 
 void quickSort(string *st ,int s ,int n);
 main()
 {
-	string st;
+	string st; int start=0;
 	cout<<"Enter a String\n";
-	cin>>st;
-	
-	quickSort( &st,0,st.length());
-	cout<<st<<endl;
+	getline(cin,st);
+	st = st+" ";
+	for(int i= 0;i<st.length();i++)
+	{
+		if( st[i]==' ' )
+		{
+			quickSort( &st,start,i);
+			start = i+1;
+		}
+	}
+	cout<<"Sorted String:-\n"<<st<<endl;
 }
 
 void quickSort(string *st , int s , int l)
@@ -21,7 +28,6 @@ void quickSort(string *st , int s , int l)
 		char pivot = (*st)[s] ,temp;;
 		while(i<=j)
 		{
-			cout<<"Yes"<<" ";
 			if((*st)[i]>pivot )
 			{
 				if( (*st)[j]<pivot )
